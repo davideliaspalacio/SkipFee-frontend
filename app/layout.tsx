@@ -111,6 +111,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {children}
         <Footer />
         <Enhance />
+        {SITE.cfAnalyticsToken ? (
+          <Script
+            id="cf-analytics"
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            strategy="afterInteractive"
+            data-cf-beacon={`{"token": "${SITE.cfAnalyticsToken}"}`}
+          />
+        ) : null}
       </body>
     </html>
   );

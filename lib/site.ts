@@ -12,4 +12,8 @@ export const SITE = {
   // Verificación de Google Search Console (método "Etiqueta HTML").
   // Pega aquí el valor "content" de la meta google-site-verification, o usa NEXT_PUBLIC_GOOGLE_VERIFICATION.
   googleVerification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ?? "",
+  // Cloudflare Web Analytics (mide PERSONAS reales, no bots).
+  // Token: Cloudflare → Web Analytics → tu sitio → "Manual" → copia el "token".
+  // Pégalo aquí o usa NEXT_PUBLIC_CF_BEACON_TOKEN.
+  cfAnalyticsToken: process.env.NEXT_PUBLIC_CF_BEACON_TOKEN ?? "",
 } as const;
