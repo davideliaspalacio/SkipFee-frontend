@@ -45,7 +45,7 @@ export default function Nav() {
 
         <div className="nav-cta">
           <a className="linklike hide-mob" href="#">Entrar</a>
-          <Link className="btn btn-primary sm" href="/precios">Ver planes</Link>
+          <Link className="btn btn-primary sm" href="/pre-registro">Pre-registro</Link>
           <button
             type="button"
             className="nav-toggle"

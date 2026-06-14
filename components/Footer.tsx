@@ -23,6 +23,7 @@ export default function Footer() {
               <li><Link href="/para-tu-negocio">Para tu negocio</Link></li>
               <li><Link href="/para-tu-negocio">IA y datos</Link></li>
               <li><Link href="/precios">Precios</Link></li>
+              <li><Link href="/pre-registro">Pre-registro</Link></li>
             </ul>
           </div>
           <div>

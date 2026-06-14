@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/para-tus-clientes", priority: 0.8 },
     { path: "/para-tu-negocio", priority: 0.9 },
     { path: "/precios", priority: 0.9 },
+    { path: "/pre-registro", priority: 0.7 },
   ];
   return routes.map((r) => ({
     url: `${SITE.url}${r.path}`,
