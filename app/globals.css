@@ -235,7 +235,7 @@ section{position:relative}
 .face.client .flink{color:var(--green-ink)} .face.biz .flink{color:var(--green)}
 
 /* ---------- Pricing ---------- */
-.prices{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; align-items:stretch}
+.prices{display:grid; grid-template-columns:repeat(auto-fit, minmax(225px, 1fr)); gap:16px; align-items:stretch}
 .plan{background:var(--surface); border:1px solid var(--line); border-radius:var(--r-xl); padding:32px 28px; display:flex; flex-direction:column}
 .plan.pop{border:2px solid var(--green); box-shadow:0 24px 50px -30px oklch(0.6 0.15 152 / .8); position:relative}
 .plan .ptag{position:absolute; top:-13px; left:28px; background:var(--green); color:var(--green-ink); font-family:var(--font-display); font-weight:700; font-size:13px; padding:5px 14px; border-radius:var(--r-pill)}
@@ -327,7 +327,7 @@ html.js .reveal.zoom.in{transform:none}
   .frow.flip .fr-media{order:0}
   .bento{grid-template-columns:repeat(2,1fr)} .span2,.span3,.span4{grid-column:span 2} .row2{grid-row:auto}
   .steps{grid-template-columns:1fr} .step .line{display:none}
-  .prices{grid-template-columns:1fr}
+  .prices{grid-template-columns:repeat(auto-fit, minmax(225px, 1fr))}
   .quote{grid-template-columns:1fr} .qmark{font-size:80px}
   .foot-grid{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
@@ -380,7 +380,7 @@ html.js .reveal.zoom.in{transform:none}
   .span2,.span3,.span4{grid-column:auto}
   /* wide comparison table becomes horizontally scrollable */
   .cmp-wrap,.table-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
-  .cmp-wrap .cmp,.table-scroll .cmp{min-width:600px}
+  .cmp-wrap .cmp,.table-scroll .cmp{min-width:760px}
   .cmp th,.cmp td{padding:12px 12px; font-size:13px}
   .dtable{font-size:13px}
   /* misc */
