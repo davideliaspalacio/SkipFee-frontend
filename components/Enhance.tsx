@@ -154,7 +154,7 @@ export default function Enhance() {
         if (sentenceEl)
           sentenceEl.innerHTML =
             `Vendiendo <b style="color:var(--ink)">${fmt(rev)}/mes</b>, una app de delivery se queda <b style="color:var(--coral)">${fmt(loss)}</b>. ` +
-            `Con Skipfee pagas <b style="color:var(--green-ink)">${fmt(cost)}</b> fijos —el plan ${planName}— y te quedan <b style="color:var(--ink)">~$${fmtM(save)} millones</b> más en el bolsillo cada mes.`;
+            `Con Skipfee pagas <b style="color:var(--green-ink)">${fmt(cost)}</b> fijos (el plan ${planName}) y te quedan <b style="color:var(--ink)">~$${fmtM(save)} millones</b> más en el bolsillo cada mes.`;
       };
       calcInput.addEventListener("input", update);
       update();

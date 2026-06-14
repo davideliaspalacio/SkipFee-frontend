@@ -408,6 +408,13 @@ html.js .reveal.zoom.in{transform:none}
 .calc-input:focus-visible{outline:3px solid var(--green-ink); outline-offset:4px}
 .calc-scale{display:flex; justify-content:space-between; align-items:center; margin-bottom:4px; font-family:var(--mono); font-size:11px; letter-spacing:.03em; color:var(--text-muted)}
 .calc-scale span:nth-child(2){color:var(--green-ink)}
+/* stable numbers: equal-width digits + no reflow as the value grows */
+.calc-amount, .calc-loss, .calc-cost, .calc-save-m, .calc-save-y{font-variant-numeric:tabular-nums; font-feature-settings:"tnum"}
+.calc-loss, .calc-cost{white-space:nowrap}
+.calc .save-row .save-head{flex-wrap:nowrap; gap:10px}
+@media(max-width:600px){
+  .calc .save-row .save-head{flex-direction:column; align-items:flex-start; gap:3px}
+}
 /* ===== home ===== */
 .kanban-demo{position:relative; min-height:120px}
 .kcol .kslot{height:64px; border:1px dashed var(--line); border-radius:6px}

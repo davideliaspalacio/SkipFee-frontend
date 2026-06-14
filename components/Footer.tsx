@@ -14,7 +14,7 @@ export default function Footer() {
               </svg>{" "}
               Skip<span className="green" style={{ color: "var(--green)" }}>Fee</span>
             </Link>
-            <p>La plataforma para vender por WhatsApp y manejar tu restaurante —sin regalarle tu margen ni tu data a nadie.</p>
+            <p>La plataforma para vender por WhatsApp y manejar tu restaurante, sin regalarle tu margen ni tu data a nadie.</p>
           </div>
           <div>
             <h4>Producto</h4>

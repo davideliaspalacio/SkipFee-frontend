@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const dynamic = "force-static";
 
-export const alt = "Skipfee — Vende por WhatsApp, sin comisiones";
+export const alt = "Skipfee: vende directo por WhatsApp, sin comisiones";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -51,7 +51,7 @@ export default function OpengraphImage() {
           Sin comisiones.
         </div>
         <div style={{ display: "flex", fontSize: 32, color: "#A9B6C8", marginTop: 30, maxWidth: 920 }}>
-          El bot que vende por ti + el software para manejar tu restaurante.
+          Tus clientes, tus datos y tus ganancias. Y haz que vuelvan a comprar.
         </div>
       </div>
     ),

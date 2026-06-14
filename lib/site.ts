@@ -3,9 +3,9 @@ export const SITE = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://skipfee.co",
   name: "Skipfee",
   titleDefault:
-    "Skipfee — Vende por WhatsApp y maneja tu restaurante. Sin comisiones.",
+    "Skipfee: vende directo por WhatsApp, sin comisiones",
   description:
-    "Skipfee reemplaza a las apps de delivery: tus clientes piden por WhatsApp y tú manejas cocina, cocineros, rutas, finanzas y tu propia data desde un panel. Te quedas con el 100% de la venta. Sin comisiones.",
+    "Vende directo por WhatsApp sin comisiones, quédate con tus clientes y haz que vuelvan a comprar. Skipfee maneja cocina, rutas, finanzas y tu propia data desde un solo panel. Te quedas con el 100% de la venta.",
   locale: "es_CO",
   twitter: "@skipfee",
 } as const;
