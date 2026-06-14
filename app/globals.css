@@ -549,6 +549,20 @@ html.js .reveal.zoom.in{transform:none}
 .gift-foot{margin-top:16px; padding-top:13px; border-top:1px solid var(--green-wash); font-size:12.5px; color:var(--green-ink); font-weight:600}
 @media(max-width:820px){ .lead-grid{grid-template-columns:1fr} .lead-aside{order:-1} }
 @media(max-width:480px){ .lead-form .field-row{grid-template-columns:1fr} }
+/* form 3 pasos */
+.lead-prog{height:5px;background:var(--line)}
+.lead-prog i{display:block;height:100%;background:var(--green);border-radius:0 99px 99px 0;transition:width .45s var(--ease-expo)}
+.lead-form .wa-input{display:flex;align-items:stretch;border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;transition:border-color .15s,box-shadow .15s}
+.lead-form .wa-input:focus-within{border-color:var(--green);box-shadow:0 0 0 3px var(--green-wash)}
+.lead-form .wa-pre{display:flex;align-items:center;padding:0 13px;background:var(--paper);border-right:1px solid var(--line);font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap}
+.lead-form .wa-input input{border:none;border-radius:0;background:transparent;flex:1}
+.lead-form .wa-input input:focus{box-shadow:none;outline:none}
+.lead-form .fhint{margin:8px 0 0;font-size:13px;color:var(--text-muted);line-height:1.45}
+.lead-form .step2-intro{margin:0 0 18px;font-size:15px;color:var(--ink)}
+.lead-form .step-back{display:block;margin:14px auto 0;background:none;border:none;color:var(--text-muted);font-family:inherit;font-size:14px;cursor:pointer;text-decoration:underline}
+.lead-form .step-back:hover{color:var(--ink)}
+.lead-diag{margin:16px auto 0;max-width:50ch;border:1px solid var(--green);background:var(--green-wash);border-radius:14px;padding:16px 20px}
+.lead-diag p{margin:0;font-size:15.5px;line-height:1.55;color:var(--ink)}
 
 /* pre-registro · animaciones de envío y éxito */
 .lead-spin{display:inline-block; width:17px; height:17px; border:2.5px solid rgba(12,61,29,.25); border-top-color:var(--green-ink); border-radius:50%; animation:lead-spin .7s linear infinite; vertical-align:-3px}

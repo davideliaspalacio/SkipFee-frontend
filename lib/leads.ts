@@ -14,20 +14,31 @@ export const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? URL_FALLBACK
 export const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? KEY_FALLBACK;
 export const LEADS_TABLE = "leads";
 
-// Optional WhatsApp fallback: your business number, digits only (e.g. "573001234567").
-// If set, a "send by WhatsApp" option appears if the save ever fails.
+// Tu número de WhatsApp de negocio, solo dígitos (ej. "573001234567").
+// Se usa para el botón "escríbenos por WhatsApp" y los CTA de wa.me.
 export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
+
+// Link para "Agendar mi llamada" (Google Calendar Appointment Schedule o Calendly).
+// Si está vacío, el éxito muestra "te escribimos en menos de 24h" en su lugar.
+export const CALENDAR_URL = process.env.NEXT_PUBLIC_CALENDAR_URL ?? "";
 
 export const leadsConfigured =
   SUPABASE_URL !== URL_FALLBACK && SUPABASE_ANON_KEY !== KEY_FALLBACK;
 
+// Todos opcionales: el Paso 1 guarda un subconjunto (estado "parcial") y el
+// Paso 2 inserta otra fila ya calificada (estado "calificado"). anon solo INSERT.
 export type Lead = {
-  business_name: string;
-  contact_name: string;
-  phone: string;
+  whatsapp?: string;
+  business_name?: string;
+  contact_name?: string;
+  phone?: string;
   email?: string;
-  contact_channel: string;
-  plan: string;
+  contact_channel?: string;
+  plan?: string;
+  orders_volume?: string;
+  peak_hours?: string;
+  est_loss?: string;
+  estado?: string;
   source?: string;
   user_agent?: string;
 };
