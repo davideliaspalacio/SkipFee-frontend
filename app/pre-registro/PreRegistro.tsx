@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
-import { submitLead, WHATSAPP_NUMBER } from "@/lib/leads";
+import { submitLead, leadsConfigured, WHATSAPP_NUMBER } from "@/lib/leads";
 
 const CHANNELS = [
   { v: "whatsapp", label: "WhatsApp" },
@@ -37,11 +37,18 @@ export default function PreRegistro() {
     if (status === "sending") return;
     setStatus("sending");
     try {
-      await submitLead({
-        ...form,
-        source: "landing-preregistro",
-        user_agent: typeof navigator !== "undefined" ? navigator.userAgent : "",
-      });
+      if (leadsConfigured) {
+        await submitLead({
+          ...form,
+          source: "landing-preregistro",
+          user_agent: typeof navigator !== "undefined" ? navigator.userAgent : "",
+        });
+      } else {
+        // Modo demo: Supabase aún no está configurado. Simulamos el envío para
+        // poder probar la experiencia (todavía no se guarda nada).
+        await new Promise((r) => setTimeout(r, 1200));
+        console.info("pre-registro: modo demo (Supabase sin configurar) — el lead no se guardó");
+      }
       setStatus("ok");
     } catch (err) {
       console.error("pre-registro: no se pudo guardar el lead", err);
@@ -66,10 +73,15 @@ export default function PreRegistro() {
       <section className="band">
         <div className="wrap">
           <div className="lead-done reveal in">
-            <span className="lead-check" aria-hidden="true">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 6 9 17l-5-5" />
-              </svg>
+            <span className="lead-check-wrap">
+              <span className="lead-burst" aria-hidden="true">
+                <i /><i /><i /><i /><i /><i /><i /><i />
+              </span>
+              <span className="lead-check" aria-hidden="true">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </span>
             </span>
             <h2 style={{ marginTop: 20 }}>
               ¡Listo{form.contact_name ? `, ${form.contact_name.split(" ")[0]}` : ""}! Quedaste en la lista.
@@ -172,8 +184,16 @@ export default function PreRegistro() {
                 </div>
 
                 <button className="btn btn-primary lead-submit" type="submit" disabled={status === "sending"}>
-                  {status === "sending" ? "Enviando…" : "Quiero mi cupo"}
-                  <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                  {status === "sending" ? (
+                    <>
+                      <span className="lead-spin" aria-hidden="true" /> Enviando…
+                    </>
+                  ) : (
+                    <>
+                      Quiero mi cupo
+                      <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                    </>
+                  )}
                 </button>
 
                 {status === "error" && (
