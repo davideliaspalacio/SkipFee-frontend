@@ -59,6 +59,9 @@
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Asignación automática a cocineros</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Post-venta: encuesta, reseña y regalo sorpresa</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Promociones automáticas</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Reportes avanzados (heatmap y conversión)</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Multi-rol (admin, operador, cocina)</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Facturación electrónica (DIAN) y contabilidad fiscal</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> CRM básico</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> 2 números de WhatsApp</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Hasta 1.800 conversaciones/mes</li>
@@ -76,8 +79,6 @@
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> <b>Todo lo de Negocio</b>, y además:</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Agente de IA con Gemini (preguntas libres)</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Llamadas de voz con IA (ElevenLabs)</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Reportes avanzados: financiero, zonas, heatmap, conversión</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Multi-rol (administrador, operador, cocina)</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Soporte prioritario con SLA</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Onboarding asistido</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> 3 números de WhatsApp</li>
@@ -98,7 +99,6 @@
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> White-label (tu marca, no la nuestra)</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Campañas masivas de WhatsApp</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> App PWA para repartidores propios</li>
-            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Integración DIAN / facturación electrónica</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Manager de cuenta dedicado</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Números ilimitados</li>
             <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg> Conversaciones ilimitadas</li>
@@ -191,19 +191,19 @@
             <tr><td>Dashboard del día</td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td></tr>
             <tr><td>Tu data de clientes (100% tuya)</td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td></tr>
             <tr><td>CRM</td><td class="c muted">—</td><td class="c">Básico</td><td class="c">Básico</td><td class="c"><span class="yes">Sí</span></td></tr>
-            <tr><td>Reportes avanzados (heatmap, conversión)</td><td class="c muted">—</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td></tr>
+            <tr><td>Reportes avanzados (heatmap, conversión)</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td></tr>
             <tr><td>Agente de IA con Gemini</td><td class="c muted">—</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td></tr>
             <tr><td>Llamadas de voz con IA (ElevenLabs)</td><td class="c muted">—</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td></tr>
 
             <tr class="grp"><td colspan="5">Escala y soporte</td></tr>
             <tr><td>Números de WhatsApp</td><td class="c">1</td><td class="c">2</td><td class="c">3</td><td class="c"><b>Ilimitados</b></td></tr>
             <tr><td>Conversaciones / mes</td><td class="c">800</td><td class="c">1.800</td><td class="c">4.000</td><td class="c"><b>Ilimitadas</b></td></tr>
-            <tr><td>Multi-rol (admin, operador, cocina)</td><td class="c muted">—</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td></tr>
+            <tr><td>Multi-rol (admin, operador, cocina)</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td></tr>
             <tr><td>Multi-sucursal</td><td class="c muted">—</td><td class="c muted">—</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td></tr>
             <tr><td>White-label (tu marca)</td><td class="c muted">—</td><td class="c muted">—</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td></tr>
             <tr><td>Campañas masivas de WhatsApp</td><td class="c muted">—</td><td class="c muted">—</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td></tr>
             <tr><td>App PWA para repartidores</td><td class="c muted">—</td><td class="c muted">—</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td></tr>
-            <tr><td>DIAN / facturación electrónica</td><td class="c muted">—</td><td class="c muted">—</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td></tr>
+            <tr><td>Facturación electrónica (DIAN) y contabilidad fiscal</td><td class="c muted">—</td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td><td class="c"><span class="yes">Sí</span></td></tr>
             <tr><td>Soporte</td><td class="c">Chat</td><td class="c">Chat</td><td class="c">Prioritario (SLA)</td><td class="c"><b>Manager dedicado</b></td></tr>
             <tr><td>Permanencia / contrato</td><td class="c"><b style="color:var(--green-ink)">Ninguna</b></td><td class="c"><b style="color:var(--green-ink)">Ninguna</b></td><td class="c"><b style="color:var(--green-ink)">Ninguna</b></td><td class="c"><b style="color:var(--green-ink)">Ninguna</b></td></tr>
           </tbody>
