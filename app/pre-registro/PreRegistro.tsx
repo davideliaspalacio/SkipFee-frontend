@@ -10,12 +10,15 @@ const CHANNELS = [
   { v: "email", label: "Email" },
 ];
 
-const PLANS = [
-  { v: "arranque", name: "Arranque", price: "$49", desc: "Para empezar a vender por WhatsApp sin intermediarios." },
-  { v: "negocio", name: "Negocio", price: "$99", desc: "La operación completa: cocina, equipo, post-venta y promos.", pop: true },
-  { v: "crece_ia", name: "Crece IA", price: "$199", desc: "Suma inteligencia artificial, voz y reportes avanzados." },
-  { v: "cadena", name: "Cadena", price: "$399", desc: "Para cadenas y multi-marca que escalan sin límites." },
-  { v: "no_se", name: "Aún no sé", price: "", desc: "Cuéntanos tu caso y te recomendamos el plan ideal." },
+// Plan Negocio (US$99/mes) — el regalo de bienvenida del pre-registro.
+const NEGOCIO_INCLUDES = [
+  "Tu tienda en línea con tu marca, montada por nosotros",
+  "Bot de pedidos por WhatsApp + checkout con pago online",
+  "Tablero de cocina, asignación a cocineros y rutas",
+  "Post-venta y promociones automáticas",
+  "Reportes avanzados + CRM de tus clientes",
+  "Facturación electrónica (DIAN) y multi-rol",
+  "0% de comisión por venta, siempre",
 ];
 
 const empty = {
@@ -24,7 +27,6 @@ const empty = {
   phone: "",
   email: "",
   contact_channel: "whatsapp",
-  plan: "",
 };
 
 export default function PreRegistro() {
@@ -40,6 +42,7 @@ export default function PreRegistro() {
       if (leadsConfigured) {
         await submitLead({
           ...form,
+          plan: "negocio_regalo",
           source: "landing-preregistro",
           user_agent: typeof navigator !== "undefined" ? navigator.userAgent : "",
         });
@@ -63,8 +66,7 @@ export default function PreRegistro() {
       `Nombre: ${form.contact_name}%0A` +
       `Teléfono: ${form.phone}%0A` +
       (form.email ? `Email: ${form.email}%0A` : "") +
-      `Contacto por: ${form.contact_channel}%0A` +
-      `Plan: ${form.plan || "por definir"}`;
+      `Contacto por: ${form.contact_channel}`;
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
   };
 
@@ -86,9 +88,10 @@ export default function PreRegistro() {
             <h2 style={{ marginTop: 20 }}>
               ¡Listo{form.contact_name ? `, ${form.contact_name.split(" ")[0]}` : ""}! Quedaste en la lista.
             </h2>
-            <p className="muted" style={{ fontSize: "1.08rem", maxWidth: "46ch", margin: "14px auto 0" }}>
+            <p className="muted" style={{ fontSize: "1.08rem", maxWidth: "48ch", margin: "14px auto 0" }}>
               Te contactamos por <b style={{ color: "var(--ink)" }}>{CHANNELS.find((c) => c.v === form.contact_channel)?.label}</b> muy
-              pronto para activar <b style={{ color: "var(--ink)" }}>{form.business_name || "tu restaurante"}</b> en Skipfee.
+              pronto para activar <b style={{ color: "var(--ink)" }}>{form.business_name || "tu restaurante"}</b> con tu{" "}
+              <b style={{ color: "var(--green-ink)" }}>plan Negocio de regalo</b>.
             </p>
             <Link className="btn btn-primary" href="/" style={{ marginTop: 24 }}>
               Volver al inicio
@@ -105,18 +108,20 @@ export default function PreRegistro() {
         <div className="wrap-wide">
           <div className="sec-head center reveal in" style={{ marginBottom: 0 }}>
             <div className="kicker">
-              <span className="dot" style={{ background: "var(--green)" }} /> Pre-registro
+              <span className="dot" style={{ background: "var(--green)" }} /> Pre-registro · oferta de lanzamiento
             </div>
-            <h2 style={{ color: "var(--on-ink)" }}>Asegura tu cupo en Skipfee.</h2>
+            <h2 style={{ color: "var(--on-ink)" }}>
+              Pre-regístrate y te regalamos el <span className="green">plan Negocio.</span>
+            </h2>
             <p>
-              Estamos activando restaurantes por tandas. Déjanos tus datos y te contactamos para montar
-              tu tienda y poner el bot en tu WhatsApp. Sin compromiso.
+              Estamos activando restaurantes por tandas. Déjanos tus datos y, cuando te toque, montamos tu
+              tienda y ponemos el bot en tu WhatsApp con el plan Negocio (US$99/mes) gratis.
             </p>
             <p className="micro" style={{ justifyContent: "center", marginTop: 18, color: "var(--on-ink-muted)" }}>
               <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" style={{ color: "var(--green)" }}>
                 <path d="M20 6 9 17l-5-5" />
               </svg>
-              2 min · Sin tarjeta · Sin compromiso
+              2 min · Sin tarjeta · Plan Negocio de regalo
             </p>
           </div>
         </div>
@@ -170,19 +175,6 @@ export default function PreRegistro() {
                   </div>
                 </div>
 
-                <div className="field">
-                  <span className="fl">¿Qué plan te llamó la atención?</span>
-                  <div className="choices" role="radiogroup" aria-label="Plan de interés">
-                    {PLANS.map((p) => (
-                      <label key={p.v} className="choice">
-                        <input type="radio" name="plan" value={p.v}
-                          checked={form.plan === p.v} onChange={(e) => set("plan", e.target.value)} />
-                        <span>{p.name}{p.price ? ` · ${p.price}` : ""}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-
                 <button className="btn btn-primary lead-submit" type="submit" disabled={status === "sending"}>
                   {status === "sending" ? (
                     <>
@@ -190,7 +182,7 @@ export default function PreRegistro() {
                     </>
                   ) : (
                     <>
-                      Quiero mi cupo
+                      Quiero mi cupo y mi regalo
                       <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
                     </>
                   )}
@@ -212,26 +204,30 @@ export default function PreRegistro() {
               </form>
             </div>
 
-            {/* PLAN EXPLAINER */}
+            {/* GIFT */}
             <aside className="lead-aside">
-              <h3>Los planes, en corto</h3>
-              <p className="muted" style={{ marginTop: 6, marginBottom: 18, fontSize: "15px" }}>
-                Todos sin comisión por venta. No tienes que decidir hoy: si dudas, elige “Aún no sé”.
-              </p>
-              <div className="lead-plans">
-                {PLANS.filter((p) => p.price).map((p) => (
-                  <div key={p.v} className={p.pop ? "lead-plan pop" : "lead-plan"}>
-                    <div className="lp-top">
-                      <b>{p.name}</b>
-                      {p.pop && <span className="lp-tag">Más popular</span>}
-                      <span className="lp-price">{p.price}<small>/mes</small></span>
-                    </div>
-                    <p>{p.desc}</p>
+              <div className="gift">
+                <div className="gift-kick"><span aria-hidden="true">🎁</span> Tu regalo de bienvenida</div>
+                <div className="gift-head">
+                  <div>
+                    <b>Plan Negocio</b>
+                    <span className="gift-sub">La operación completa, sin comisiones</span>
                   </div>
-                ))}
+                  <div className="gift-price">
+                    <s>US$99/mes</s>
+                    <span className="gift-free">Gratis</span>
+                  </div>
+                </div>
+                <p className="gift-lede">Cuando activemos tu restaurante te lo dejamos sin costo. Esto es lo que entra:</p>
+                <ul className="gift-list">
+                  {NEGOCIO_INCLUDES.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+                <div className="gift-foot">Cupos por tanda · sin tarjeta · cancela cuando quieras</div>
               </div>
-              <Link className="linklike" href="/precios" style={{ marginTop: 16, display: "inline-block" }}>
-                Ver el detalle de cada plan →
+              <Link className="linklike" href="/precios" style={{ marginTop: 14, display: "inline-block" }}>
+                Ver todo lo que incluye el plan →
               </Link>
             </aside>
           </div>

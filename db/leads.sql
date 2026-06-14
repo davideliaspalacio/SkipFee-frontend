@@ -9,7 +9,7 @@ create table if not exists public.leads (
   phone           text not null,
   email           text,
   contact_channel text,          -- whatsapp | llamada | email
-  plan            text,          -- arranque | negocio | crece_ia | cadena | no_se
+  plan            text,          -- cohorte/oferta, p.ej. 'negocio_regalo'
   source          text default 'landing-preregistro',
   user_agent      text
 );
