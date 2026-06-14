@@ -1,0 +1,85 @@
+/* ===== home ===== */
+.kanban-demo{position:relative; min-height:120px}
+.kcol .kslot{height:64px; border:1px dashed var(--line); border-radius:6px}
+.kcard{position:absolute; top:30px; left:0; width:calc(33.333% - 8px); background:var(--surface); border:1px solid var(--green); border-radius:6px; padding:10px 12px; font-size:13px; font-weight:600; box-shadow:0 8px 18px -8px oklch(0.2 0.05 250 / .4)}
+.kcard .price{font-family:"Bricolage Grotesque"; color:var(--green-ink); font-size:13px}
+.flow{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+.flow .fstep{position:relative; padding:24px 22px; background:var(--ink-soft); border:1px solid var(--ink-line); border-radius:var(--r-lg)}
+.flow .fnum{font-family:"DM Mono"; font-size:13px; color:var(--green); font-weight:500}
+.flow .fstep h3{font-size:1.15rem; margin:10px 0 6px; color:var(--on-ink)}
+.flow .fstep p{font-size:14.5px; color:var(--on-ink-muted)}
+.flow .fstep .arr{position:absolute; right:-12px; top:50%; transform:translateY(-50%); color:var(--ink-line); z-index:2}
+.flow .fstep:last-child .arr{display:none}
+.solve{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.solve .card3{background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); padding:26px}
+.solve .pain{display:flex; align-items:center; gap:8px; font-size:13.5px; color:var(--coral); font-weight:600; margin-bottom:14px}
+.solve .pain .x{width:22px; height:22px; border-radius:6px; background:oklch(0.95 0.04 28); display:grid; place-items:center; flex:none}
+.solve h3{font-size:1.3rem; margin-bottom:6px}
+.solve p{font-size:15px; color:var(--text-muted)}
+@media(max-width:880px){ .flow{grid-template-columns:1fr 1fr} .flow .fstep .arr{display:none} .solve{grid-template-columns:1fr} }
+@media(max-width:560px){ .flow{grid-template-columns:1fr} }
+
+/* ===== clientes ===== */
+/* page-specific demo-only bits (warm/rounded cliente side) */
+.menu-card{display:flex; gap:11px; align-items:center; background:#fff; border:1px solid var(--line); border-radius:13px; padding:9px 11px; box-shadow:0 1px 2px oklch(0.5 0.05 250 / .1)}
+.menu-card .thumb{width:42px; height:42px; border-radius:10px; flex:none; background:linear-gradient(135deg,var(--green-wash),oklch(0.86 0.12 92 / .55))}
+.menu-card b{font-size:12.5px; display:block; line-height:1.2}
+.menu-card small{font-size:11px; color:var(--text-muted)}
+.menu-card .pz{margin-left:auto; font-family:"Bricolage Grotesque"; font-weight:700; font-size:12.5px; color:var(--green-ink)}
+/* live order-tracking strip inside a phone */
+.track{display:flex; flex-direction:column; gap:0; padding:4px 2px}
+.track .tstep{display:flex; align-items:center; gap:10px; padding:7px 4px; font-size:12px; color:var(--text-muted)}
+.track .tstep b{font-size:12px; color:var(--ink); font-weight:600}
+.track .tdot{width:16px; height:16px; border-radius:50%; flex:none; display:grid; place-items:center; background:var(--surface-3); color:#fff}
+.track .tstep.done .tdot{background:var(--green)}
+.track .tstep.now .tdot{background:var(--green); box-shadow:0 0 0 4px var(--green-wash)}
+.track .tstep.now b{color:var(--green-ink)}
+.track .tline{width:2px; height:13px; margin-left:7px; background:var(--line)}
+.track .tstep.done + .tline{background:var(--green)}
+/* warm comparison list */
+.vs{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+.vs-card{border-radius:var(--r-xl); padding:clamp(24px,3vw,34px)}
+.vs-card.them{background:var(--surface); border:1px solid var(--line)}
+.vs-card.us{background:var(--green-wash); border:1px solid oklch(0.80 0.17 152 / .4)}
+.vs-card h3{font-size:1.3rem; margin-bottom:6px}
+.vs-card.us h3{color:var(--green-ink)}
+.vs-card .vrow{display:flex; gap:11px; align-items:flex-start; padding:11px 0; border-top:1px solid color-mix(in oklch, var(--ink) 8%, transparent); font-size:15px}
+.vs-card .vrow:first-of-type{border-top:none}
+.vs-card.them .vrow svg{color:var(--coral); flex:none; margin-top:2px}
+.vs-card.us .vrow svg{color:var(--green-strong); flex:none; margin-top:2px}
+.vs-card.us .vrow{color:oklch(0.30 0.07 152); border-color:oklch(0.80 0.17 152 / .3)}
+@media(max-width:680px){ .vs{grid-template-columns:1fr} }
+
+/* ===== negocio ===== */
+/* demo-only bits for this page */
+.kanban-demo{position:relative; min-height:120px}
+.kcol .kslot{height:64px; border:1px dashed var(--line); border-radius:6px}
+.kcard{position:absolute; top:30px; left:0; width:calc(33.333% - 8px); background:var(--surface); border:1px solid var(--green); border-radius:6px; padding:10px 12px; font-size:13px; font-weight:600; box-shadow:0 8px 18px -8px oklch(0.2 0.05 250 / .4)}
+.kcard .price{font-family:"Bricolage Grotesque"; color:var(--green-ink); font-size:13px}
+/* route map demo */
+.routemap{position:relative; width:100%; aspect-ratio:16/10; background:var(--ink-soft); border-radius:2px; overflow:hidden}
+.routemap .pin{position:absolute; transform:translate(-50%,-50%); display:grid; place-items:center; width:24px; height:24px; border-radius:50% 50% 50% 2px; rotate:45deg; font-size:0}
+.routemap .pin b{rotate:-45deg; display:block; width:8px; height:8px; border-radius:50%}
+.routemap .lbl{position:absolute; transform:translate(-50%,-140%); font-family:var(--mono); font-size:10px; color:var(--on-ink-muted); white-space:nowrap; background:oklch(0.23 0.045 250 / .8); padding:2px 6px; border-radius:3px}
+/* sla timeline */
+.sla{display:flex; flex-direction:column; gap:14px}
+.sla .row{display:grid; grid-template-columns:120px 1fr auto; gap:14px; align-items:center}
+.sla .row .nm{font-size:13px; font-weight:600}
+.sla .track{height:10px; background:var(--surface-3); border-radius:99px; overflow:hidden}
+.sla .track i{display:block; height:100%; border-radius:99px; background:var(--green)}
+.sla .row .tm{font-family:var(--mono); font-size:12px; color:var(--text-muted); text-align:right}
+/* local switcher demo */
+.locrow{display:flex; align-items:center; gap:12px; padding:12px 14px; border:1px solid var(--line); border-radius:4px; background:var(--surface)}
+.locrow.is-on{border-color:var(--green); box-shadow:inset 0 0 0 1px var(--green)}
+.locrow .ic{width:34px; height:34px; border-radius:4px; flex:none; display:grid; place-items:center; font-family:"Bricolage Grotesque"; font-weight:800; font-size:15px; color:var(--on-ink); background:var(--ink)}
+.locrow .meta{flex:1} .locrow .meta b{font-size:14px} .locrow .meta small{display:block; color:var(--text-muted); font-size:12px}
+
+/* ===== precios ===== */
+/* page-specific demo bits only */
+.save-bars{display:flex; flex-direction:column; gap:18px}
+.save-row .save-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:8px; font-size:14px}
+.save-bar{height:20px; border-radius:99px; background:var(--ink-line); overflow:hidden}
+.save-bar i{display:block; height:100%; border-radius:99px; transition:width 1s var(--ease-expo)}
+.toll-note{display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--text-muted); margin-top:18px}
+.cmp-wrap{overflow-x:auto}
+.cmp{min-width:680px}

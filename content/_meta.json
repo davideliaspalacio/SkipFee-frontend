@@ -1,0 +1,18 @@
+{
+  "home": {
+    "title": "Skipfee — Vende por WhatsApp y maneja tu restaurante. Sin comisiones.",
+    "desc": "Skipfee reemplaza a las apps de delivery: tus clientes piden por WhatsApp y tú manejas cocina, cocineros, rutas, finanzas y tu propia data desde un panel. Te quedas con el 100% de la venta. Sin comisiones."
+  },
+  "clientes": {
+    "title": "Skipfee — Tus clientes piden por WhatsApp, sin apps ni filas",
+    "desc": "Tus clientes piden por WhatsApp, en el chat de siempre: sin descargar nada, sin filas, sin contraseñas. El bot saluda, arma el pedido, cobra (tarjeta, PSE o Nequi) y avisa cuándo llega. Respuestas al instante, 24/7."
+  },
+  "negocio": {
+    "title": "Skipfee — El software para manejar todo tu restaurante",
+    "desc": "El software que las apps de delivery nunca te dieron: tablero de pedidos, pantalla de cocina, cocineros, rutas optimizadas, tiempos, finanzas, IA, multi-local y tu propia data. Listo para operar tu restaurante completo."
+  },
+  "precios": {
+    "title": "Skipfee — Precios. Un precio fijo, cero comisiones",
+    "desc": "Un precio fijo al mes y cero comisiones por venta. Elige Básico, Pro o Enterprise: bot de WhatsApp, pagos, cocina, rutas, finanzas y tu propia data. Cancela cuando quieras."
+  }
+}
