@@ -563,6 +563,22 @@ html.js .reveal.zoom.in{transform:none}
 .lead-form .step-back:hover{color:var(--ink)}
 .lead-diag{margin:16px auto 0;max-width:50ch;border:1px solid var(--green);background:var(--green-wash);border-radius:14px;padding:16px 20px}
 .lead-diag p{margin:0;font-size:15.5px;line-height:1.55;color:var(--ink)}
+/* hero mini-form (captura WhatsApp) */
+.hero-cap{margin-top:26px;max-width:500px}
+.hero-cap-row{display:flex;gap:10px;flex-wrap:wrap}
+.hero-cap-field{display:flex;align-items:center;flex:1 1 220px;background:#fff;border-radius:14px;padding:0 6px 0 14px;box-shadow:0 12px 30px -12px rgba(0,0,0,.45)}
+.hero-cap-pre{font-weight:600;color:var(--ink);white-space:nowrap;font-size:15px}
+.hero-cap-field input{flex:1;border:none;background:transparent;font-size:16px;padding:15px 10px;color:var(--ink);outline:none;min-width:0;font-family:inherit}
+.hero-cap-row .btn{flex:0 0 auto;white-space:nowrap}
+.hero-cap-link{display:inline-block;margin-top:14px;color:var(--on-ink-muted);font-size:14px;text-decoration:none}
+.hero-cap-link:hover{color:var(--on-ink)}
+@media(max-width:560px){ .hero-cap-row .btn{flex:1 1 100%;justify-content:center} }
+/* "no es solo un bot" pills + comparación */
+.botpill{display:inline-flex;align-items:center;gap:7px;background:#ffffff14;border:1px solid var(--ink-line);border-radius:999px;padding:8px 15px;font-size:14px;font-weight:600;color:var(--on-ink)}
+.vsrow{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;line-height:1.45;color:var(--on-ink)}
+.vsrow .vno,.vsrow .vok{flex:none;width:21px;height:21px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:12px;margin-top:1px}
+.vsrow .vno{background:#e5484d22;color:var(--coral)}
+.vsrow .vok{background:var(--green);color:var(--green-ink)}
 
 /* pre-registro · animaciones de envío y éxito */
 .lead-spin{display:inline-block; width:17px; height:17px; border:2.5px solid rgba(12,61,29,.25); border-top-color:var(--green-ink); border-radius:50%; animation:lead-spin .7s linear infinite; vertical-align:-3px}
