@@ -16,6 +16,7 @@ export default function Enhance() {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const observers: IntersectionObserver[] = [];
+    const cleanups: Array<() => void> = [];
 
     // --- Scroll reveals ---
     const reveals = document.querySelectorAll<HTMLElement>(".reveal");
@@ -106,32 +107,58 @@ export default function Enhance() {
       charts.forEach(setBars);
     }
 
-    // --- Savings bars ---
-    const saveBars = document.querySelector(".save-bars");
-    if (saveBars) {
-      const loss = saveBars.querySelector<HTMLElement>(".save-fill-loss");
-      const keep = saveBars.querySelector<HTMLElement>(".save-fill-keep");
-      const fillSave = () => {
-        if (loss) loss.style.width = "100%";
-        if (keep) keep.style.width = "7%";
+    // --- Savings calculator (interactive) ---
+    const calc = document.querySelector<HTMLElement>(".panel.calc");
+    const calcInput = calc?.querySelector<HTMLInputElement>(".calc-input");
+    if (calc && calcInput) {
+      const rate = parseFloat(calc.dataset.rate || "4000") || 4000; // COP per USD (approx.)
+      const comm = parseFloat(calc.dataset.comm || "0.28") || 0.28; // delivery-app commission
+      const planUsd = parseFloat(calc.dataset.planUsd || "99") || 99;
+      const planName = calc.dataset.planName || "Negocio";
+      const cost = planUsd * rate; // fixed Skipfee cost in COP/month
+      const min = parseFloat(calcInput.min) || 0;
+      const max = parseFloat(calcInput.max) || 100;
+
+      const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CO");
+      const fmtM = (n: number) =>
+        (n / 1e6).toLocaleString("es-CO", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+      const scope = (calc.closest(".reveal") as HTMLElement | null) || document;
+      const q = <T extends HTMLElement>(root: ParentNode, s: string) => root.querySelector<T>(s);
+      const revEl = q(calc, ".calc-rev");
+      const lossEl = q(calc, ".calc-loss");
+      const costEl = q(calc, ".calc-cost");
+      const planEl = q(calc, ".calc-plan");
+      const lossFill = q<HTMLElement>(calc, ".save-fill-loss");
+      const keepFill = q<HTMLElement>(calc, ".save-fill-keep");
+      const saveMEl = q(scope, ".calc-save-m");
+      const saveYEl = q(scope, ".calc-save-y");
+      const sentenceEl = q(scope, ".calc-sentence");
+
+      if (planEl) planEl.textContent = planName;
+      if (costEl) costEl.textContent = "−" + fmt(cost);
+      if (keepFill) keepFill.style.width = "8%";
+
+      const update = () => {
+        const rev = parseFloat(calcInput.value) || 0;
+        const loss = rev * comm;
+        const save = Math.max(0, loss - cost);
+        const pct = max > min ? ((rev - min) / (max - min)) * 100 : 0;
+        calcInput.style.background = `linear-gradient(90deg, var(--green) ${pct}%, #e7ece6 ${pct}%)`;
+        if (revEl) revEl.textContent = Math.round(rev).toLocaleString("es-CO");
+        if (lossEl) lossEl.textContent = "−" + fmt(loss);
+        if (saveMEl) saveMEl.textContent = fmtM(save);
+        if (saveYEl) saveYEl.textContent = fmtM(save * 12);
+        if (lossFill) lossFill.style.width = "100%";
+        if (keepFill) keepFill.style.width = Math.max(8, Math.min(100, (cost / loss) * 100)) + "%";
+        if (sentenceEl)
+          sentenceEl.innerHTML =
+            `Vendiendo <b style="color:var(--ink)">${fmt(rev)}/mes</b>, una app de delivery se queda <b style="color:var(--coral)">${fmt(loss)}</b>. ` +
+            `Con Skipfee pagas <b style="color:var(--green-ink)">${fmt(cost)}</b> fijos —el plan ${planName}— y te quedan <b style="color:var(--ink)">~$${fmtM(save)} millones</b> más en el bolsillo cada mes.`;
       };
-      if (reduce || !("IntersectionObserver" in window)) {
-        fillSave();
-      } else {
-        const sio = new IntersectionObserver(
-          (en) => {
-            en.forEach((e) => {
-              if (e.isIntersecting) {
-                fillSave();
-                sio.disconnect();
-              }
-            });
-          },
-          { threshold: 0.4 },
-        );
-        observers.push(sio);
-        sio.observe(saveBars);
-      }
+      calcInput.addEventListener("input", update);
+      update();
+      cleanups.push(() => calcInput.removeEventListener("input", update));
     }
 
     // --- Tabs ---
@@ -161,6 +188,7 @@ export default function Enhance() {
     return () => {
       observers.forEach((o) => o.disconnect());
       tabCleanups.forEach((fn) => fn());
+      cleanups.forEach((fn) => fn());
     };
   }, [pathname]);
 

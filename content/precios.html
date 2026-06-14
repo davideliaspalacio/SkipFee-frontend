@@ -121,31 +121,35 @@
       </div>
 
       <div class="reveal" style="display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,4vw,56px); align-items:center">
-        <!-- the visual: panel with two bars (loss vs keep) -->
-        <div class="panel">
-          <div class="panel-bar"><span>Estimado — Delivery de $10.000.000 / mes</span><span class="mono" style="color:var(--green-strong)">COP</span></div>
+        <!-- interactive savings calculator (wired up in Enhance.tsx) -->
+        <div class="panel calc" data-rate="4000" data-comm="0.28" data-plan-usd="99" data-plan-name="Negocio">
+          <div class="panel-bar"><span>Calcula tu ahorro</span><span class="mono" style="color:var(--green-strong)">COP / mes</span></div>
           <div class="panel-body">
-            <div class="save-bars">
+            <label class="calc-label" for="calc-rev-precios">¿Cuánto vendes en delivery al mes?</label>
+            <div class="calc-amount">$<span class="calc-rev">20.000.000</span></div>
+            <input id="calc-rev-precios" class="calc-input" type="range" min="3000000" max="60000000" step="500000" value="20000000" aria-label="Ventas mensuales en delivery (COP)">
+            <div class="calc-scale"><span>$3M</span><span>arrástralo →</span><span>$60M</span></div>
+            <div class="save-bars" style="margin-top:18px">
               <div class="save-row">
-                <div class="save-head"><span class="muted">Con apps de delivery, te quitan ~28%</span><b style="font-family:'Bricolage Grotesque'; font-size:20px; color:var(--coral)">−$2.800.000</b></div>
-                <div class="save-bar"><i class="save-fill-loss" style="width:0; background:var(--coral)"></i></div>
+                <div class="save-head"><span class="muted">Una app de delivery te quita ~28%</span><b class="calc-loss" style="font-family:'Bricolage Grotesque'; font-size:20px; color:var(--coral)">−$5.600.000</b></div>
+                <div class="save-bar"><i class="save-fill-loss" style="width:100%; background:var(--coral)"></i></div>
               </div>
               <div class="save-row">
-                <div class="save-head"><span class="muted">Con Skipfee, pagas solo el plan Negocio</span><b style="font-family:'Bricolage Grotesque'; font-size:20px; color:var(--green-strong)">$99/mes</b></div>
-                <div class="save-bar"><i class="save-fill-keep" style="width:0; background:var(--green)"></i></div>
+                <div class="save-head"><span class="muted">Skipfee, plan <span class="calc-plan">Negocio</span> fijo</span><b class="calc-cost" style="font-family:'Bricolage Grotesque'; font-size:20px; color:var(--green-strong)">−$396.000</b></div>
+                <div class="save-bar"><i class="save-fill-keep" style="width:8%; background:var(--green)"></i></div>
               </div>
             </div>
-            <p class="toll-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg> Cifras estimadas para ilustrar. La comisión real varía según la app y la ciudad.</p>
+            <p class="toll-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg> Estimado para ilustrar: comisión del 28% y plan facturado en USD (~$4.000 COP). Tu ahorro real suele ser mayor.</p>
           </div>
         </div>
 
-        <!-- two stat tiles + sentence -->
+        <!-- live result: stat tiles + sentence -->
         <div>
           <div class="stats">
-            <div class="stat"><div class="v">$<span class="count" data-to="2.6" data-decimals="1">2,6</span><span class="u">M</span></div><div class="l">Te ahorras al mes, aprox., frente a una comisión del 28%</div></div>
-            <div class="stat"><div class="v">$<span class="count" data-to="31" data-decimals="1">31,2</span><span class="u">M</span></div><div class="l">Al año en tu bolsillo —tu plata, no la de un intermediario</div></div>
+            <div class="stat"><div class="v">$<span class="calc-save-m">5,2</span><span class="u">M</span></div><div class="l">Te quedas al mes, frente a una comisión del 28%</div></div>
+            <div class="stat"><div class="v">$<span class="calc-save-y">62,4</span><span class="u">M</span></div><div class="l">Al año en tu bolsillo —tu plata, no la de un intermediario</div></div>
           </div>
-          <p class="muted" style="margin-top:22px; font-size:1.05rem; max-width:46ch">Sobre un delivery de <b style="color:var(--ink)">$10 millones al mes</b>, una comisión del 28% son <b style="color:var(--coral)">$2.800.000</b>. Con Skipfee pagas <b style="color:var(--green-ink)">$99/mes</b> fijos. Te quedan <b style="color:var(--ink)">~$2.6 millones</b> más en el bolsillo —cada mes, vendas más o vendas menos.</p>
+          <p class="muted calc-sentence" style="margin-top:22px; font-size:1.05rem; max-width:46ch">Vendiendo <b style="color:var(--ink)">$20.000.000/mes</b>, una app de delivery se queda <b style="color:var(--coral)">$5.600.000</b>. Con Skipfee pagas <b style="color:var(--green-ink)">$396.000</b> fijos —el plan Negocio— y te quedan <b style="color:var(--ink)">~$5,2 millones</b> más en el bolsillo cada mes.</p>
           <a class="btn btn-primary sm" href="#planes" style="margin-top:20px">Quiero quedarme con mi plata <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
       </div>
