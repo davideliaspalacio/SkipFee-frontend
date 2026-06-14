@@ -1,0 +1,5 @@
+# Cloudflare Pages headers
+# The dynamic OG image is exported as an extensionless file; force its content-type.
+/opengraph-image
+  Content-Type: image/png
+  Cache-Control: public, max-age=86400

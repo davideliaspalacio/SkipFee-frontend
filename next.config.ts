@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Marketing site: fully static-friendly (SSG). Keep it lean and fast.
+  // Marketing site: fully static (SSG) → exported to plain HTML for Cloudflare Pages.
+  output: "export",
+  images: { unoptimized: true },
   poweredByHeader: false,
-  compress: true,
 };
 
 export default nextConfig;
