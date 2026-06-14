@@ -8,4 +8,8 @@ export const SITE = {
     "Vende directo por WhatsApp sin comisiones, quédate con tus clientes y haz que vuelvan a comprar. Skipfee maneja cocina, rutas, finanzas y tu propia data desde un solo panel. Te quedas con el 100% de la venta.",
   locale: "es_CO",
   twitter: "@skipfee",
+  instagram: "https://www.instagram.com/skipfee",
+  // Verificación de Google Search Console (método "Etiqueta HTML").
+  // Pega aquí el valor "content" de la meta google-site-verification, o usa NEXT_PUBLIC_GOOGLE_VERIFICATION.
+  googleVerification: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ?? "",
 } as const;

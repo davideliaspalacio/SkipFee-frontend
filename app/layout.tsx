@@ -46,6 +46,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   category: "technology",
+  verification: SITE.googleVerification ? { google: SITE.googleVerification } : undefined,
 };
 
 const jsonLd = {
@@ -56,8 +57,20 @@ const jsonLd = {
       "@id": `${SITE.url}/#org`,
       name: "Skipfee",
       url: SITE.url,
+      logo: `${SITE.url}/icon.svg`,
       description: SITE.description,
+      slogan: "Vende por WhatsApp, sin comisiones.",
       areaServed: "CO",
+      sameAs: [SITE.instagram],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.name,
+      description: SITE.description,
+      inLanguage: "es-CO",
+      publisher: { "@id": `${SITE.url}/#org` },
     },
     {
       "@type": "SoftwareApplication",
@@ -67,7 +80,13 @@ const jsonLd = {
       url: SITE.url,
       description: SITE.description,
       publisher: { "@id": `${SITE.url}/#org` },
-      offers: { "@type": "Offer", price: "99000", priceCurrency: "COP" },
+      offers: {
+        "@type": "AggregateOffer",
+        lowPrice: "49",
+        highPrice: "399",
+        priceCurrency: "USD",
+        offerCount: 4,
+      },
     },
   ],
 };

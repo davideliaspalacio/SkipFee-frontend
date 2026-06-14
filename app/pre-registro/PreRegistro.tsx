@@ -110,9 +110,9 @@ export default function PreRegistro() {
             <div className="kicker">
               <span className="dot" style={{ background: "var(--green)" }} /> Pre-registro · oferta de lanzamiento
             </div>
-            <h2 style={{ color: "var(--on-ink)" }}>
+            <h1 style={{ color: "var(--on-ink)" }}>
               Pre-regístrate y te regalamos el <span className="green">plan Negocio.</span>
-            </h2>
+            </h1>
             <p>
               Estamos activando restaurantes por tandas. Déjanos tus datos y, cuando te toque, montamos tu
               tienda y ponemos el bot en tu WhatsApp con el plan Negocio (US$99/mes) gratis.

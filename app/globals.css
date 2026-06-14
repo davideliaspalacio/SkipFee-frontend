@@ -96,7 +96,7 @@ section{position:relative}
 .band.ink.grid-bg{background-color:var(--ink); background-image:linear-gradient(oklch(1 0 0 / .04) 1px,transparent 1px),linear-gradient(90deg,oklch(1 0 0 / .04) 1px,transparent 1px)}
 .sec-head{margin-bottom:clamp(34px,5vw,56px)}
 .sec-head.center{margin-inline:auto; max-width:740px}
-.sec-head h2{font-size:clamp(2rem,3.8vw,3.1rem)}
+.sec-head h1,.sec-head h2{font-size:clamp(2rem,3.8vw,3.1rem)}
 .sec-head p{color:var(--text-muted); font-size:clamp(1.05rem,1.4vw,1.2rem); max-width:56ch; margin-top:16px}
 .band.ink .sec-head p{color:var(--on-ink-muted)}
 .kicker{display:inline-flex; align-items:center; gap:8px; font-family:var(--mono); font-size:13px; letter-spacing:.04em; color:var(--green-strong); margin-bottom:16px; text-transform:uppercase}
