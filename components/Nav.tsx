@@ -24,7 +24,7 @@ export default function Nav() {
       <div className="wrap-wide nav-in">
         <Link className="brand" href="/" aria-label="Skipfee inicio">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/skipfeeIcon.png" alt="" width={34} height={34} style={{ display: "block", flex: "none" }} />
+          <img src="/skipfeeIcon.png" alt="" width={48} height={48} style={{ display: "block", flex: "none" }} />
           Skip<span className="green">Fee</span>
         </Link>
 
