@@ -8,7 +8,7 @@ export default function Footer() {
           <div>
             <Link className="brand" href="/">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/skipfeeIcon.png" alt="" width={38} height={38} style={{ display: "block", flex: "none" }} />{" "}
+              <img src="/skipfeeIconMain.png" alt="" width={38} height={38} style={{ display: "block", flex: "none" }} />{" "}
               Skip<span className="green" style={{ color: "var(--green)" }}>Fee</span>
             </Link>
             <p>La plataforma para vender por WhatsApp y manejar tu restaurante, sin regalarle tu margen ni tu información a nadie.</p>

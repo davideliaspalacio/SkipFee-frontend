@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   creator: SITE.name,
   publisher: SITE.name,
   alternates: { canonical: "/" },
-  icons: { icon: "/skipfeeIcon.png", shortcut: "/skipfeeIcon.png", apple: "/skipfeeIcon.png" },
+  icons: { icon: "/skipfeeIconMain.png", shortcut: "/skipfeeIconMain.png", apple: "/skipfeeIconMain.png" },
   openGraph: {
     type: "website",
     locale: SITE.locale,
@@ -58,7 +58,7 @@ const jsonLd = {
       "@id": `${SITE.url}/#org`,
       name: "Skipfee",
       url: SITE.url,
-      logo: `${SITE.url}/skipfeeIcon.png`,
+      logo: `${SITE.url}/skipfeeIconMain.png`,
       description: SITE.description,
       slogan: "Vende por WhatsApp, sin comisiones.",
       areaServed: "CO",
