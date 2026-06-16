@@ -23,11 +23,8 @@ export default function Nav() {
     <header className={open ? "nav open" : "nav"}>
       <div className="wrap-wide nav-in">
         <Link className="brand" href="/" aria-label="Skipfee inicio">
-          <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true">
-            <path d="M5 33 L18 9 a3 3 0 0 1 5 0 L31 25" fill="none" stroke="#13233B" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M22.5 25 h10" stroke="#13233B" strokeWidth="4" strokeLinecap="round" />
-            <circle cx="24" cy="33" r="4.5" fill="#2BD15A" />
-          </svg>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/skipfeeIcon.png" alt="" width={34} height={34} style={{ display: "block", flex: "none" }} />
           Skip<span className="green">Fee</span>
         </Link>
 

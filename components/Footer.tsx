@@ -7,11 +7,8 @@ export default function Footer() {
         <div className="foot-grid">
           <div>
             <Link className="brand" href="/">
-              <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true">
-                <path d="M5 33 L18 9 a3 3 0 0 1 5 0 L31 25" fill="none" stroke="#fff" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M22.5 25 h10" stroke="#fff" strokeWidth="4" strokeLinecap="round" />
-                <circle cx="24" cy="33" r="4.5" fill="#2BD15A" />
-              </svg>{" "}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/skipfeeIcon.png" alt="" width={38} height={38} style={{ display: "block", flex: "none" }} />{" "}
               Skip<span className="green" style={{ color: "var(--green)" }}>Fee</span>
             </Link>
             <p>La plataforma para vender por WhatsApp y manejar tu restaurante, sin regalarle tu margen ni tu información a nadie.</p>
