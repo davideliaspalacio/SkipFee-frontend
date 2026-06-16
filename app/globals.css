@@ -74,14 +74,14 @@ ul{margin:0}
 
 /* ---------- Nav (multi-route) ---------- */
 .nav{position:sticky; top:0; z-index:50; background:color-mix(in oklch, var(--paper) 82%, transparent); backdrop-filter:saturate(1.4) blur(10px); border-bottom:1px solid color-mix(in oklch, var(--ink) 8%, transparent)}
-.nav-in{display:flex; align-items:center; justify-content:space-between; height:72px}
+.nav-in{display:flex; align-items:center; justify-content:space-between; height:88px}
 .brand{display:flex; align-items:center; gap:10px; font-family:var(--font-display),sans-serif; font-weight:800; font-size:24px; letter-spacing:-0.02em}
 .brand .green{color:var(--green-strong)}
 .nav-links{display:flex; align-items:center; gap:30px}
 .nav-links a{font-weight:500; color:var(--text-muted); font-size:16px; transition:color .15s; position:relative}
 .nav-links a:hover{color:var(--ink)}
 .nav-links a[aria-current="page"]{color:var(--ink); font-weight:600}
-.nav-links a[aria-current="page"]::after{content:""; position:absolute; left:0; right:0; bottom:-26px; height:2px; background:var(--green)}
+.nav-links a[aria-current="page"]::after{content:""; position:absolute; left:0; right:0; bottom:-32px; height:2px; background:var(--green)}
 .nav-cta{display:flex; align-items:center; gap:14px}
 .linklike{font-family:var(--font-sans),sans-serif; font-weight:600; font-size:15px; color:var(--ink)}
 
