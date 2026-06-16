@@ -622,3 +622,12 @@ html.js .reveal.zoom.in{transform:none}
   .lead-check, .lead-check::after, .lead-check svg path, .lead-burst i, .lead-done h2, .lead-done > p, .lead-done .btn{animation:none}
   .lead-check svg path{stroke-dashoffset:0}
 }
+
+/* ===== legal pages (terminos, privacidad) ===== */
+.legal-prose h2{font-size:1.25rem; margin:32px 0 10px}
+.legal-prose h2:first-child{margin-top:0}
+.legal-prose p{margin:0 0 12px; color:var(--text); line-height:1.7}
+.legal-prose ul{margin:0 0 12px; padding-left:22px; color:var(--text); line-height:1.7}
+.legal-prose li{margin-bottom:6px}
+.legal-prose a{color:var(--green-ink); text-decoration:underline; text-underline-offset:3px}
+.legal-prose a:hover{color:var(--green-strong)}

@@ -14,5 +14,13 @@
   "precios": {
     "title": "Skipfee — Precios. Un precio fijo, cero comisiones",
     "desc": "Un precio fijo al mes y cero comisiones por venta. Elige Básico, Pro o Enterprise: bot de WhatsApp, pagos, cocina, rutas, finanzas y tu propia data. Cancela cuando quieras."
+  },
+  "terminos": {
+    "title": "Skipfee — Términos y condiciones",
+    "desc": "Términos y condiciones de uso de la plataforma Skipfee. Suscripción mensual, sin permanencia, conforme a la ley colombiana."
+  },
+  "privacidad": {
+    "title": "Skipfee — Política de privacidad",
+    "desc": "Política de tratamiento de datos personales de Skipfee, conforme a la Ley 1581 de 2012 y el Decreto 1377 de 2013 de Colombia."
   }
 }

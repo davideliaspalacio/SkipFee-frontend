@@ -38,6 +38,9 @@ export type Lead = {
   orders_volume?: string;
   peak_hours?: string;
   est_loss?: string;
+  city?: string;
+  current_apps?: string;
+  cuisine_type?: string;
   estado?: string;
   source?: string;
   user_agent?: string;

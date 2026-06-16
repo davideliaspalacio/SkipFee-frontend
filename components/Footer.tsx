@@ -14,31 +14,28 @@ export default function Footer() {
               </svg>{" "}
               Skip<span className="green" style={{ color: "var(--green)" }}>Fee</span>
             </Link>
-            <p>La plataforma para vender por WhatsApp y manejar tu restaurante, sin regalarle tu margen ni tu data a nadie.</p>
+            <p>La plataforma para vender por WhatsApp y manejar tu restaurante, sin regalarle tu margen ni tu información a nadie.</p>
           </div>
           <div>
             <h4>Producto</h4>
             <ul>
               <li><Link href="/para-tus-clientes">Para tus clientes</Link></li>
               <li><Link href="/para-tu-negocio">Para tu negocio</Link></li>
-              <li><Link href="/para-tu-negocio">IA y datos</Link></li>
               <li><Link href="/precios">Precios</Link></li>
               <li><Link href="/pre-registro">Pre-registro</Link></li>
             </ul>
           </div>
           <div>
-            <h4>Empresa</h4>
+            <h4>Contacto</h4>
             <ul>
-              <li><a href="#">Nosotros</a></li>
-              <li><a href="#">Historias</a></li>
-              <li><a href="#">Contacto</a></li>
+              <li><a href="mailto:hola@skipfee.co">hola@skipfee.co</a></li>
             </ul>
           </div>
           <div>
             <h4>Legal</h4>
             <ul>
-              <li><a href="#">Términos</a></li>
-              <li><a href="#">Privacidad</a></li>
+              <li><Link href="/terminos">Términos</Link></li>
+              <li><Link href="/privacidad">Privacidad</Link></li>
             </ul>
           </div>
         </div>

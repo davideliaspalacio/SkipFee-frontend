@@ -7,6 +7,9 @@ import { submitLead, leadsConfigured, WHATSAPP_NUMBER, CALENDAR_URL, type Lead }
 const ORDERS = ["Menos de 10", "10–30", "30–60", "60–100", "Más de 100", "Apenas arranco"];
 const HOURS = ["Almuerzo", "Tarde", "Noche", "Madrugada", "Fines de semana"];
 const LOSS = ["No sé / nunca lo medí", "Menos de $1M", "$1M–$3M", "$3M–$6M", "Más de $6M"];
+const CITIES = ["Medellín", "Bogotá", "Cali", "Barranquilla", "Bucaramanga", "Cartagena", "Pereira", "Otra"];
+const APPS = ["Rappi", "DiDi Food", "UberEats", "Ninguna"];
+const CUISINES = ["Hamburguesas", "Pizza", "Comida rápida", "Comida típica", "Saludable / bowls", "Asiática / sushi", "Postres / café", "Otra"];
 
 const NEGOCIO_INCLUDES = [
   "Tu tienda en línea con tu marca, montada por nosotros",
@@ -27,6 +30,9 @@ const empty = {
   orders_volume: "",
   peak_hours: [] as string[],
   est_loss: "",
+  city: "",
+  current_apps: [] as string[],
+  cuisine_type: "",
   plan: "",
 };
 
@@ -47,6 +53,15 @@ export default function PreRegistro() {
   const toggleHour = (h: string) =>
     set("peak_hours", form.peak_hours.includes(h) ? form.peak_hours.filter((x) => x !== h) : [...form.peak_hours, h]);
 
+  const toggleApp = (a: string) => {
+    if (a === "Ninguna") {
+      set("current_apps", form.current_apps.includes("Ninguna") ? [] : ["Ninguna"]);
+      return;
+    }
+    const without = form.current_apps.filter((x) => x !== "Ninguna");
+    set("current_apps", without.includes(a) ? without.filter((x) => x !== a) : [...without, a]);
+  };
+
   const save = async (lead: Lead) => {
     if (leadsConfigured) {
       await submitLead({ ...lead, source: "landing-preregistro", user_agent: typeof navigator !== "undefined" ? navigator.userAgent : "" });
@@ -57,25 +72,12 @@ export default function PreRegistro() {
     }
   };
 
-  const submitStep1 = async (e: FormEvent<HTMLFormElement>) => {
+  const submitStep1 = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (status === "sending") return;
-    setStatus("sending");
-    try {
-      await save({
-        whatsapp: form.whatsapp,
-        contact_name: form.contact_name,
-        business_name: form.business_name,
-        email: form.email || undefined,
-        plan: form.plan || "negocio_regalo",
-        estado: "parcial",
-      });
-      setStatus("idle");
-      setStep(2);
-    } catch (err) {
-      console.error("pre-registro paso 1:", err);
-      setStatus("error");
-    }
+    // El paso 1 ya no guarda en Supabase: el cupo solo se aparta al completar el paso 2.
+    // HTML form validation (required) bloquea avanzar si faltan campos.
+    setStatus("idle");
+    setStep(2);
   };
 
   const submitStep2 = async (e: FormEvent<HTMLFormElement>) => {
@@ -92,6 +94,9 @@ export default function PreRegistro() {
         orders_volume: form.orders_volume || undefined,
         peak_hours: form.peak_hours.length ? form.peak_hours.join(", ") : undefined,
         est_loss: form.est_loss || undefined,
+        city: form.city || undefined,
+        current_apps: form.current_apps.length ? form.current_apps.join(", ") : undefined,
+        cuisine_type: form.cuisine_type || undefined,
         estado: "calificado",
       });
       setStatus("idle");
@@ -225,16 +230,15 @@ export default function PreRegistro() {
                   </div>
                   <p className="fhint" style={{ marginTop: -8 }}>Así se vería tu tienda: <b style={{ color: "var(--green-ink)" }}>{slug}.skipfee.co</b></p>
 
-                  <button className="btn btn-primary lead-submit" type="submit" disabled={sending}>
-                    {sending ? (<><span className="lead-spin" aria-hidden="true" /> Enviando…</>) : (<>Apartar mi cupo
-                      <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" /></svg></>)}
+                  <button className="btn btn-primary lead-submit" type="submit">
+                    Continuar
+                    <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
                   </button>
-                  {status === "error" && <p className="lead-error">No pudimos guardar. Inténtalo de nuevo en un momento.</p>}
-                  <p className="lead-fine">Al continuar aceptas que te contactemos por WhatsApp sobre Skipfee. Puedes pedir que paremos cuando quieras.</p>
+                  <p className="lead-fine">30 segundos más y tu cupo queda apartado. Cero spam.</p>
                 </form>
               ) : (
                 <form className="panel-body" onSubmit={submitStep2} noValidate>
-                  <p className="step2-intro">Ya tienes tu cupo apartado ✅. Esto nos ayuda a personalizar tu tienda:</p>
+                  <p className="step2-intro">Última parte. Esto nos ayuda a calificar tu cupo y a personalizar tu tienda:</p>
 
                   <div className="field">
                     <span className="fl">¿Cuántos pedidos despachas al día?</span>
@@ -273,11 +277,48 @@ export default function PreRegistro() {
                     <p className="fhint">Cada chat sin responder es un pedido que se fue a otro lado.</p>
                   </div>
 
+                  <div className="field">
+                    <span className="fl">¿En qué ciudad estás?</span>
+                    <div className="choices">
+                      {CITIES.map((c) => (
+                        <label key={c} className="choice">
+                          <input type="radio" name="city" value={c} checked={form.city === c} onChange={() => set("city", c)} />
+                          <span>{c}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="field">
+                    <span className="fl">¿Vendes hoy por apps de domicilios? <span style={{ color: "var(--text-muted)", fontWeight: 400, fontSize: 13 }}>(puedes elegir varias)</span></span>
+                    <div className="choices">
+                      {APPS.map((a) => (
+                        <label key={a} className="choice">
+                          <input type="checkbox" checked={form.current_apps.includes(a)} onChange={() => toggleApp(a)} />
+                          <span>{a}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="field">
+                    <span className="fl">¿Qué tipo de comida vendes?</span>
+                    <div className="choices">
+                      {CUISINES.map((c) => (
+                        <label key={c} className="choice">
+                          <input type="radio" name="cuisine" value={c} checked={form.cuisine_type === c} onChange={() => set("cuisine_type", c)} />
+                          <span>{c}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
                   <button className="btn btn-primary lead-submit" type="submit" disabled={sending}>
-                    {sending ? (<><span className="lead-spin" aria-hidden="true" /> Enviando…</>) : (<>Ver mi diagnóstico
+                    {sending ? (<><span className="lead-spin" aria-hidden="true" /> Apartando…</>) : (<>Apartar mi cupo
                       <svg className="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M13 6l6 6-6 6" /></svg></>)}
                   </button>
                   {status === "error" && <p className="lead-error">No pudimos guardar. Inténtalo de nuevo en un momento.</p>}
+                  <p className="lead-fine">Al apartar tu cupo aceptas que te contactemos por WhatsApp sobre Skipfee. Puedes pedir que paremos cuando quieras.</p>
                   <button type="button" className="step-back" onClick={() => { setStatus("idle"); setStep(1); }}>← Volver</button>
                 </form>
               )}

@@ -11,12 +11,22 @@ export default function Enhance() {
   const pathname = usePathname();
 
   useEffect(() => {
+    let observers: IntersectionObserver[] = [];
+    let cleanups: Array<() => void> = [];
+
+    const teardown = () => {
+      observers.forEach((o) => o.disconnect());
+      cleanups.forEach((fn) => fn());
+      observers = [];
+      cleanups = [];
+    };
+
+    const runEnhancements = () => {
+      teardown();
+
     const reduce =
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const observers: IntersectionObserver[] = [];
-    const cleanups: Array<() => void> = [];
 
     // --- Scroll reveals ---
     const reveals = document.querySelectorAll<HTMLElement>(".reveal");
@@ -185,10 +195,24 @@ export default function Enhance() {
       });
     });
 
+      cleanups.push(...tabCleanups);
+    };
+
+    runEnhancements();
+
+    // Re-run enhancements when <main> contents are replaced — covers same-URL
+    // navigation (e.g. clicking the footer link on the page you're already on)
+    // which would otherwise leave .reveal elements stuck at opacity:0.
+    const main = document.querySelector("main");
+    let mo: MutationObserver | null = null;
+    if (main) {
+      mo = new MutationObserver(() => runEnhancements());
+      mo.observe(main, { childList: true });
+    }
+
     return () => {
-      observers.forEach((o) => o.disconnect());
-      tabCleanups.forEach((fn) => fn());
-      cleanups.forEach((fn) => fn());
+      teardown();
+      mo?.disconnect();
     };
   }, [pathname]);
 

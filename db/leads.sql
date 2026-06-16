@@ -15,6 +15,9 @@ create table if not exists public.leads (
   orders_volume   text,          -- ej. '30-60', '+100', 'apenas-arranco'
   peak_hours      text,          -- ej. 'almuerzo, noche'
   est_loss        text,          -- ej. '1M-3M', 'no-se'
+  city            text,          -- ciudad del restaurante
+  current_apps    text,          -- ej. 'Rappi, DiDi Food' | 'Ninguna'
+  cuisine_type    text,          -- ej. 'Hamburguesas', 'Comida típica'
   estado          text,          -- 'parcial' (Paso 1) | 'calificado' (Paso 2)
   source          text default 'landing-preregistro',
   user_agent      text
@@ -25,6 +28,9 @@ alter table public.leads add column if not exists whatsapp text;
 alter table public.leads add column if not exists orders_volume text;
 alter table public.leads add column if not exists peak_hours text;
 alter table public.leads add column if not exists est_loss text;
+alter table public.leads add column if not exists city text;
+alter table public.leads add column if not exists current_apps text;
+alter table public.leads add column if not exists cuisine_type text;
 alter table public.leads add column if not exists estado text;
 
 -- RLS: el formulario público (rol anon) SOLO puede insertar; nunca leer ni actualizar.
