@@ -1,18 +1,15 @@
-// Lead capture (pre-registro) config.
+// Lead capture (pre-registro).
 //
-// The anon / publishable key is PUBLIC by design — security is enforced by Row
-// Level Security on the `leads` table (anon can INSERT, never SELECT). So it is
-// safe to paste it here. You can also set the NEXT_PUBLIC_ env vars instead.
+// La landing es estática y NO toca Supabase ni secretos. El form hace POST al
+// BACKEND (SkipFee-backend) → `${NEXT_PUBLIC_API_URL}/api/leads`. El backend es
+// quien guarda el lead en Supabase (service_role) y avisa al webhook de Discord.
 //
-// 1. Run the SQL in db/leads.sql in your Supabase SQL editor (creates the table + RLS).
-// 2. Paste your project URL and anon key below (Project settings → API).
+// Para activarlo: seteá NEXT_PUBLIC_API_URL al origen del backend (ver
+// .env.example) y agregá el dominio de esta landing a EXTRA_CORS_ORIGINS en el
+// backend, para que su CORS te deje postear.
 
-const URL_FALLBACK = "https://TU-PROYECTO.supabase.co";
-const KEY_FALLBACK = "TU_ANON_KEY";
-
-export const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? URL_FALLBACK;
-export const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? KEY_FALLBACK;
-export const LEADS_TABLE = "leads";
+// Origen del backend, sin slash final. Ej: "https://api.skipfee.co".
+const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/+$/, "");
 
 // Tu número de WhatsApp de negocio, solo dígitos (ej. "573001234567").
 // Se usa para el botón "escríbenos por WhatsApp" y los CTA de wa.me.
@@ -22,11 +19,10 @@ export const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
 // Si está vacío, el éxito muestra "te escribimos en menos de 24h" en su lugar.
 export const CALENDAR_URL = process.env.NEXT_PUBLIC_CALENDAR_URL ?? "";
 
-export const leadsConfigured =
-  SUPABASE_URL !== URL_FALLBACK && SUPABASE_ANON_KEY !== KEY_FALLBACK;
+// Sin backend configurado, el form corre en modo demo (simula, no guarda).
+export const leadsConfigured = Boolean(API_URL);
 
-// Todos opcionales: el Paso 1 guarda un subconjunto (estado "parcial") y el
-// Paso 2 inserta otra fila ya calificada (estado "calificado"). anon solo INSERT.
+// Todos opcionales. El Paso 2 manda la fila ya calificada (estado "calificado").
 export type Lead = {
   whatsapp?: string;
   business_name?: string;
@@ -48,18 +44,13 @@ export type Lead = {
 
 export async function submitLead(lead: Lead): Promise<void> {
   if (!leadsConfigured) throw new Error("leads-not-configured");
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${LEADS_TABLE}`, {
+  const res = await fetch(`${API_URL}/api/leads`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      apikey: SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      Prefer: "return=minimal",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(lead),
   });
   if (!res.ok) {
     const detail = await res.text().catch(() => "");
-    throw new Error(`supabase ${res.status} ${detail}`);
+    throw new Error(`leads ${res.status} ${detail}`);
   }
 }
