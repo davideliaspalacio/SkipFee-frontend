@@ -41,7 +41,8 @@ export default function Nav() {
         </nav>
 
         <div className="nav-cta">
-          <Link className="btn btn-primary sm" href="/pre-registro">Pre-registro</Link>
+          <Link className="btn btn-ghost sm hide-mob" href="/pre-registro">Pre-registro</Link>
+          <Link className="btn btn-primary sm" href="/onboarding">Crea tu tienda</Link>
           <button
             type="button"
             className="nav-toggle"
