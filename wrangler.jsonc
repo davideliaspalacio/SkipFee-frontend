@@ -2,7 +2,7 @@
   // Sirve la landing como ESTÁTICA en Cloudflare Workers (Static Assets).
   // No es un Worker de servidor: solo publica la carpeta exportada `out/`.
   // Build command en Cloudflare: `npm run build`  ·  Deploy command: `npx wrangler deploy`
-  "name": "skipfee-frontend",
+  "name": "skipfee-website",
   "compatibility_date": "2026-06-01",
   "assets": {
     "directory": "./out",
