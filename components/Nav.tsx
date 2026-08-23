@@ -9,6 +9,7 @@ const LINKS = [
   { href: "/para-tus-clientes", label: "Para tus clientes" },
   { href: "/para-tu-negocio", label: "Para tu negocio" },
   { href: "/precios", label: "Precios" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Nav() {
@@ -41,8 +42,10 @@ export default function Nav() {
         </nav>
 
         <div className="nav-cta">
-          <Link className="btn btn-ghost sm hide-mob" href="/pre-registro">Pre-registro</Link>
-          <Link className="btn btn-primary sm" href="/onboarding">Crea tu tienda</Link>
+          {/* El CTA principal ahora lleva al registro REAL. Antes iba a /onboarding,
+              que solo abre el demo del panel con datos de ejemplo. */}
+          <Link className="btn btn-ghost sm hide-mob" href="/onboarding">Ver demo</Link>
+          <Link className="btn btn-primary sm" href="/registro">Crear cuenta</Link>
           <button
             type="button"
             className="nav-toggle"
