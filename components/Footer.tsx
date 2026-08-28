@@ -19,7 +19,9 @@ export default function Footer() {
               <li><Link href="/para-tus-clientes">Para tus clientes</Link></li>
               <li><Link href="/para-tu-negocio">Para tu negocio</Link></li>
               <li><Link href="/precios">Precios</Link></li>
-              <li><Link href="/pre-registro">Pre-registro</Link></li>
+              <li><Link href="/blog">Blog</Link></li>
+              <li><Link href="/registro">Crear mi cuenta</Link></li>
+              <li><Link href="/pre-registro">Hablar con nosotros</Link></li>
             </ul>
           </div>
           <div>
